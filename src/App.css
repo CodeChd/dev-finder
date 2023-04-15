@@ -1,19 +1,183 @@
 .App{
   min-height: 100vh;
-  display: grid;
-  place-content: center;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 8% 0;
+  color: #ffffff;
+}
+
+[data-theme="dark"]{
+  background-color: var(  --clr-dirty-white  );
+  color: var( --clr-dark );
+
+}
+
+[data-theme="light"]{
+background-color: var(  --clr-dark-blue );
+color: var(   --clr-white );
+}
+
+
+header{
+  display: flex;
+  justify-content: space-between;
+}
+
+header > p{
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+
+.toggle_btn{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: transparent;
+  border: none;
+  font-size: 1rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+form{
+  display: flex;
+  margin: 2rem 0;
+  background-color:#1E2A47;
+  padding: 1rem;
+  border-radius: 15px;
+  position: relative;
+
+}
+
+form img{
+  height: 100%;
+  width: 5%;
+  transform: translateY(10px);
+  margin-right: 1.5rem;
+}
+
+form input{
+  width: 100%;
+  background: transparent;
+  border: none;
+}
+
+form input::placeholder{
+  color: #ffffff;
+}
+
+
+.btn{
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  border: none;
+  background-color: #0079FF;
+  color: #ffffff;
 }
 
 .content{
   position: relative;
+  display: flex;
+  gap: 1rem;
+  padding: 2.5rem;
+  background-color:#1E2A47;
+  border-radius: 15px;
 }
+
 
 .circle{
-  background: url("../public/assets/octocat.png") no-repeat center center;
-  background-size: cover;
-  aspect-ratio: 1;
-  overflow: hidden;
-  height: 300px;
-  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  flex-basis: 30%;
 }
 
+.circle img{
+  height:190px;
+  width:190px;
+  border-radius: 50%;
+}
+
+.details{
+  flex: 1;
+}
+
+.details .description{
+  display: flex;
+}
+
+.description .names p:nth-child(2){
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+.description .names p:nth-child(3){
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.description .social-at{
+  color: #0079FF;
+}
+
+
+
+.date{
+  margin-left: auto;
+}
+
+
+.profile_social{
+  background-color: #141D2F;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 15px;
+  padding: 1rem 2rem;
+  margin: 2rem 0;
+  
+}
+
+.profile_social span{
+  display: block;
+  padding: 0.5rem 0 1rem 0;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+
+.footer-content{
+  display: flex;
+  gap: 5rem;
+}
+
+.footer-content .desc-1 p:first-child{
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+
+}
+.footer-content .desc-2 p:first-child{
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+
+}
+
+
+.footer-content p{
+
+  display: flex;
+  gap: 1rem;
+ 
+
+}
+.footer-content img {
+  flex-basis: 8%;
+  filter: brightness(0) invert(1);
+
+}
+
+.footer-content .twitter{
+
+  filter: brightness(0) invert(0.7);
+
+}

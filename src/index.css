@@ -1,3 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+
+:root{
+
+  /* lightmode */
+  --clr-blue  : #0079FF;
+  --clr-gray  : #697C9A;
+  --clr-navy-sky-blue  : #4B6A9B;
+  --clr-dark  : #2B3442;
+  --clr-smoke-white  : #F6F8FF;
+  --clr-dirty-white  : #FEFEFE;
+
+
+  /* darkmode */
+  --clr-blue  : #0079FF;
+  --clr-white  : #FFFFFF;
+  --clr-dark-blue  : #141D2F;
+  --clr-navy-blue  : #1E2A47;
+
+
+}
+
+
+
+
+
+
 /*
   1. Use a more-intuitive box-sizing model.
 */
@@ -43,4 +71,12 @@ input, button, textarea, select {
 */
 p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
+}
+
+body{
+  background-color: #141D2F;
+  font-size: 18px;
+  line-height: 25px;
+  font-family: "Space Mono", sans-serif;
+  
 }
