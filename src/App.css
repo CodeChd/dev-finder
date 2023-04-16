@@ -3,13 +3,12 @@
   max-width: 900px;
   margin: 0 auto;
   padding: 8% 0;
-  color: #ffffff;
 }
 
 [data-theme="dark"]{
-  background-color: var(  --clr-dirty-white  );
+  background-color: var( --clr-smoke-white);
   color: var( --clr-dark );
-
+  
 }
 
 [data-theme="light"]{
@@ -48,7 +47,7 @@ form{
   padding: 1rem;
   border-radius: 15px;
   position: relative;
-
+  
 }
 
 form img{
@@ -64,8 +63,22 @@ form input{
   border: none;
 }
 
+.search_light{
+
+  background-color: var(--clr-white );
+  
+  
+}
+
+
 form input::placeholder{
   color: #ffffff;
+}
+
+
+.input_light::placeholder{
+  color: var(  --clr-navy-sky-blue );
+
 }
 
 
@@ -84,6 +97,15 @@ form input::placeholder{
   padding: 2.5rem;
   background-color:#1E2A47;
   border-radius: 15px;
+}
+
+.light_content{
+  background-color: var(--clr-white );
+  color: var(  --clr-navy-sky-blue );
+}
+.light_content .names > h1{
+  color: var(--clr-dark);
+
 }
 
 
@@ -127,6 +149,7 @@ form input::placeholder{
 }
 
 
+
 .profile_social{
   background-color: #141D2F;
   display: flex;
@@ -136,6 +159,15 @@ form input::placeholder{
   padding: 1rem 2rem;
   margin: 2rem 0;
   
+}
+
+
+.light_social{
+  background-color: var( --clr-smoke-white);
+
+}
+.light_social p > span {
+  color: var(--clr-dark);
 }
 
 .profile_social span{
@@ -176,8 +208,13 @@ form input::placeholder{
 
 }
 
+.footer-content .img_light{
+  filter: none;
+}
+
+
 .footer-content .twitter{
-
+  
   filter: brightness(0) invert(0.7);
-
+  flex-basis: 10%;
 }

@@ -33,13 +33,13 @@ function App() {
         </div>
       </header>
 
-      <form>
+      <form className={`${theme === "dark" ? "search_light" : null}`}>
         <img src={SearchIcon} alt="search-icon" />
-        <input type="text" placeholder="Search Github Username" />
+        <input className={`${theme === "dark" ? "input_light" : null}`} type="text" placeholder="Search Github Username" />
         <button className="btn">Search</button>
       </form>
 
-      <main className="content">
+      <main className={`${theme === "dark" ? "light_content" : null} content`}>
         <div className="circle">
           <img src="/assets/octocat.png" alt="" />
         </div>
@@ -56,7 +56,7 @@ function App() {
             </div>
           </div>
 
-          <div className="profile_social">
+          <div className={`${theme === "dark" ? "light_social" : null} profile_social`}>
             <p>
               Repos
               <span>8</span>
@@ -74,21 +74,21 @@ function App() {
           <div className="footer-content">
             <div className="desc-1">
               <p>
-                <img src={location} alt="location-icon" />{" "}
+                <img className={`${theme === "dark" ? "img_light" : null}`} src={location} alt="location-icon" />{" "}
                 <span>San Francisco</span>{" "}
               </p>
               <p>
-                <img src={link} alt="link-icon" />
-                <span>https://github.blog</span>{" "}
+                <img className={`${theme === "dark" ? "img_light" : null} link`} src={link} alt="link-icon" />
+                <span>https://github.blog </span>{" "}
               </p>
             </div>
             <div className="desc-2">
               <p>
-                <img className="twitter" src={twitter} alt="twitter-icon" />
+                <img className={`${theme === "dark" ? "img_light" : null } twitter`} src={twitter} alt="twitter-icon" />
                 <span>Not available</span>{" "}
               </p>
               <p>
-                <img src={company} alt="building-icon" />
+                <img className={`${theme === "dark" ? "img_light" : null}`} src={company} alt="building-icon" />
                 <span>@github</span>{" "}
               </p>
             </div>
