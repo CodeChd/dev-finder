@@ -6,9 +6,18 @@ import twitter from "../public/assets/icon-twitter.svg";
 import company from "../public/assets/icon-company.svg";
 import link from "../public/assets/icon-website.svg";
 import location from "../public/assets/icon-location.svg";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import Context from "./Context";
 
 function App() {
+
+  const githubContext = useContext(Context);
+
+  // console.log(githubContext)
+
+
+
+
   const [theme, setTheme] = useState("light");
 
   useEffect(() => {
@@ -20,6 +29,23 @@ function App() {
   const toggleTheme = () => {
     if (theme === "light") setTheme("dark");
     else setTheme("light");
+  };
+
+
+  const [text, setText] = useState('');
+
+  const onChange = e => {
+    setText(e.target.value);
+  };
+
+  const onSubmit = e => {
+    e.preventDefault();
+    if (text === '' || text === ' ') {
+      setAlert('Please enter something', 'light');
+    } else {
+      githubContext.searchUsers(text);
+      setText('');
+    }
   };
 
   return (
@@ -35,13 +61,13 @@ function App() {
 
       <form className={`${theme === "dark" ? "search_light" : null}`}>
         <img src={SearchIcon} alt="search-icon" />
-        <input className={`${theme === "dark" ? "input_light" : null}`} type="text" placeholder="Search Github Username" />
-        <button className="btn">Search</button>
+        <input className={`${theme === "dark" ? "input_light" : null}`} value={text} type="text" placeholder="Search Github Username" onChange={onChange} />
+        <button className="btn" onSubmit={onSubmit} >Search</button>
       </form>
 
       <main className={`${theme === "dark" ? "light_content" : null} content`}>
         <div className="circle">
-          <img src="/assets/octocat.png" alt="" />
+          {/* <img src={githubContext.user.avatar_url} alt="" />   */}
         </div>
 
         <div className="details">
@@ -64,7 +90,7 @@ function App() {
             <p>
               Followers
               <span>3839</span>
-            </p>
+            </p> 
             <p>
               Following
               <span>9</span>
