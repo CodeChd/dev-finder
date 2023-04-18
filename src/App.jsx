@@ -9,20 +9,30 @@ import location from "../public/assets/icon-location.svg";
 import { useContext, useEffect, useState } from "react";
 import Context from "./Context";
 
-function App() {
+const months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
 
+function App() {
   const githubContext = useContext(Context);
 
-  // console.log(githubContext)
-
-
-
+  // console.log(githubContext.user)
 
   const [theme, setTheme] = useState("light");
 
   useEffect(() => {
     document.querySelector("body").setAttribute("data-theme", theme);
-    document.querySelector("header").setAttribute("data-theme", theme);
     document.querySelector(".toggle_btn").setAttribute("data-theme", theme);
   }, [theme]);
 
@@ -31,20 +41,19 @@ function App() {
     else setTheme("light");
   };
 
+  const [text, setText] = useState("");
 
-  const [text, setText] = useState('');
-
-  const onChange = e => {
+  const onChange = (e) => {
     setText(e.target.value);
   };
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    if (text === '' || text === ' ') {
-      setAlert('Please enter something', 'light');
+    if (text === "" || text === " ") {
+      console.log("Hello Senpai enter some input");
     } else {
       githubContext.searchUsers(text);
-      setText('');
+      setText("");
     }
   };
 
@@ -60,62 +69,179 @@ function App() {
       </header>
 
       <form className={`${theme === "dark" ? "search_light" : null}`}>
-        <img src={SearchIcon} alt="search-icon" />
-        <input className={`${theme === "dark" ? "input_light" : null}`} value={text} type="text" placeholder="Search Github Username" onChange={onChange} />
-        <button className="btn" onSubmit={onSubmit} >Search</button>
+        <input
+          className={`${theme === "dark" ? "input_light" : null} search_icon`}
+          value={text}
+          type="search"
+          placeholder="Search Github Username"
+          onChange={onChange}
+        />
+        <div className="right_component">
+        <p className={`${githubContext.user.message === undefined ? "input_error" : "enable"}`}>No Results</p>
+        <button className="btn" onClick={onSubmit}>
+          Search
+        </button>
+        </div>
       </form>
 
       <main className={`${theme === "dark" ? "light_content" : null} content`}>
-        <div className="circle">
-          {/* <img src={githubContext.user.avatar_url} alt="" />   */}
-        </div>
-
         <div className="details">
           <div className="description">
+            <img
+              className="circle"
+              src={
+                !githubContext.user.avatar_url
+                  ? "/assets/octocat.png"
+                  : githubContext.user.avatar_url
+              }
+              alt=""
+            />
+
             <div className="names">
-              <h1>The Octocat</h1>
-              <p className="social-at">@octocat</p>
-              <p>This profile has no bio</p>
-            </div>
-            <div className="date">
-              <p>Joined jan 25 2011</p>
+              <div className="suname">
+                <h1>
+                  {githubContext.user.length === 0
+                    ? "Octocat"
+                    : githubContext.user.login === "" 
+                    ? "Octocat" : githubContext.user.login}
+                </h1>
+                <p className="social-at">
+                  @
+                  {!githubContext.user.login
+                    ? "octocat"
+                    : githubContext.user.login}
+                </p>
+              </div>
+
+              <div className="date">
+                <p>
+                  Joined{" "}
+                  {!githubContext.user.created_at
+                    ? " Jan"
+                    : months[
+                        githubContext.user.created_at
+                          .split("T")
+                          .shift()
+                          .split("-")[1] - 1
+                      ]}{" "}
+                  {!githubContext.user.created_at
+                    ? " 25"
+                    : githubContext.user.created_at
+                        .split("T")
+                        .shift()
+                        .split("-")[2]}{" "}
+                  {!githubContext.user.created_at
+                    ? " 2011"
+                    : githubContext.user.created_at
+                        .split("T")
+                        .shift()
+                        .split("-")[0]}{" "}
+                </p>
+              </div>
             </div>
           </div>
+          <p className="bio">
+            {!githubContext.user.bio
+              ? "This profile has no bio"
+              : githubContext.user.bio}
+          </p>
 
-          <div className={`${theme === "dark" ? "light_social" : null} profile_social`}>
+          <div
+            className={`${
+              theme === "dark" ? "light_social" : null
+            } profile_social`}
+          >
             <p>
               Repos
-              <span>8</span>
+              <span>
+                {githubContext.user.length === 0
+                  ? "8  "
+                  : githubContext.user.public_repos === null 
+                  ? "N/A"
+                  : githubContext.user.public_repos}
+              </span>
             </p>
             <p>
               Followers
-              <span>3839</span>
-            </p> 
+              <span>
+                {githubContext.user.length === 0
+                  ? "3839"
+                  : githubContext.user.followers === null
+                  ? "N/A"
+                  : githubContext.user.followers}
+              </span>
+            </p>
             <p>
               Following
-              <span>9</span>
+              <span>
+                {githubContext.user.length === 0
+                  ? "9"
+                  : githubContext.user.following === null
+                  ? "N/A"
+                  : githubContext.user.following}
+              </span>
             </p>
           </div>
 
           <div className="footer-content">
             <div className="desc-1">
               <p>
-                <img className={`${theme === "dark" ? "img_light" : null}`} src={location} alt="location-icon" />{" "}
-                <span>San Francisco</span>{" "}
+                <img
+                  className={`${theme === "dark" ? "img_light" : null}`}
+                  src={location}
+                  alt="location-icon"
+                />
+                <span>
+                  {githubContext.user.length === 0
+                    ? "San Francisco"
+                    : githubContext.user.location === null
+                    ? "Not Available"
+                    : githubContext.user.location}
+                </span>
               </p>
               <p>
-                <img className={`${theme === "dark" ? "img_light" : null} link`} src={link} alt="link-icon" />
-                <span>https://github.blog </span>{" "}
+                <img
+                  className={`${theme === "dark" ? "img_light" : null} link`}
+                  src={link}
+                  alt="link-icon"
+                />
+                <span>
+                  {githubContext.user.length === 0
+                    ? "https://github.blog"
+                    : githubContext.user.blog === ""
+                    ? "Not Available"
+                    : githubContext.user.blog}{" "}
+                </span>
               </p>
             </div>
             <div className="desc-2">
               <p>
-                <img className={`${theme === "dark" ? "img_light" : null } twitter`} src={twitter} alt="twitter-icon" />
-                <span>Not available</span>{" "}
+                <img
+                  className={`${theme === "dark" ? "img_light" : null} twitter`}
+                  src={twitter}
+                  alt="twitter-icon"
+                />
+                <span>
+                  {githubContext.user.length === 0
+                    ? "Not Available"
+                    : githubContext.user.twitter_username === null
+                    ? "Not Available"
+                    : githubContext.user.twitter_username}
+                </span>
               </p>
               <p>
-                <img className={`${theme === "dark" ? "img_light" : null}`} src={company} alt="building-icon" />
-                <span>@github</span>{" "}
+                <img
+                  className={`${theme === "dark" ? "img_light" : null}`}
+                  src={company}
+                  alt="building-icon"
+                />
+                <span>
+                  {githubContext.user.length === 0
+                    ? "@github"
+                    : githubContext.user.company === null
+                    ? "Not Available"
+                    : githubContext.user.company}
+                </span>
               </p>
             </div>
           </div>

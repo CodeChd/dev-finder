@@ -79,5 +79,6 @@ body{
   font-size: 18px;
   line-height: 25px;
   font-family: "Space Mono", sans-serif;
+  transition: all 200ms ease-out;
   
 }
