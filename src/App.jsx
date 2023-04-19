@@ -27,8 +27,6 @@ const months = [
 function App() {
   const githubContext = useContext(Context);
 
-  // console.log(githubContext.user)
-
   const [theme, setTheme] = useState("light");
 
   useEffect(() => {
@@ -57,6 +55,7 @@ function App() {
     }
   };
 
+
   return (
     <div className="App">
       <header>
@@ -77,7 +76,7 @@ function App() {
           onChange={onChange}
         />
         <div className="right_component">
-        <p className={`${githubContext.user.message === undefined ? "input_error" : "enable"}`}>No Results</p>
+        <p className={`${githubContext.user.message === "Not Found" ? "input_error" : "enable"}`}>No Results</p>
         <button className="btn" onClick={onSubmit}>
           Search
         </button>
@@ -99,8 +98,8 @@ function App() {
 
             <div className="names">
               <div className="suname">
-                <h1>
-                  {githubContext.user.length === 0
+                <h1 className={theme === "dark" ? "light_name" : null}>
+                  {githubContext.user.length  === 0 || githubContext.user.message === "Not Found" 
                     ? "Octocat"
                     : githubContext.user.login === "" 
                     ? "Octocat" : githubContext.user.login}
@@ -154,7 +153,7 @@ function App() {
             <p>
               Repos
               <span>
-                {githubContext.user.length === 0
+                {githubContext.user.length  === 0 || githubContext.user.message === "Not Found" 
                   ? "8  "
                   : githubContext.user.public_repos === null 
                   ? "N/A"
@@ -164,7 +163,7 @@ function App() {
             <p>
               Followers
               <span>
-                {githubContext.user.length === 0
+                {githubContext.user.length  === 0 || githubContext.user.message === "Not Found" 
                   ? "3839"
                   : githubContext.user.followers === null
                   ? "N/A"
@@ -174,7 +173,7 @@ function App() {
             <p>
               Following
               <span>
-                {githubContext.user.length === 0
+                {githubContext.user.length  === 0 || githubContext.user.message === "Not Found" 
                   ? "9"
                   : githubContext.user.following === null
                   ? "N/A"
@@ -192,7 +191,7 @@ function App() {
                   alt="location-icon"
                 />
                 <span>
-                  {githubContext.user.length === 0
+                  {githubContext.user.length  === 0 || githubContext.user.message === "Not Found" 
                     ? "San Francisco"
                     : githubContext.user.location === null
                     ? "Not Available"
@@ -206,7 +205,7 @@ function App() {
                   alt="link-icon"
                 />
                 <span>
-                  {githubContext.user.length === 0
+                  {githubContext.user.length  === 0 || githubContext.user.message === "Not Found" 
                     ? "https://github.blog"
                     : githubContext.user.blog === ""
                     ? "Not Available"
@@ -222,7 +221,7 @@ function App() {
                   alt="twitter-icon"
                 />
                 <span>
-                  {githubContext.user.length === 0
+                  {githubContext.user.length  === 0 || githubContext.user.message === "Not Found" 
                     ? "Not Available"
                     : githubContext.user.twitter_username === null
                     ? "Not Available"
@@ -236,7 +235,7 @@ function App() {
                   alt="building-icon"
                 />
                 <span>
-                  {githubContext.user.length === 0
+                  {githubContext.user.length  === 0 || githubContext.user.message === "Not Found" 
                     ? "@github"
                     : githubContext.user.company === null
                     ? "Not Available"
