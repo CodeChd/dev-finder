@@ -2,7 +2,7 @@ import { useState } from "react";
 import { createContext } from "react";
 const githubContext = createContext();
 
-const access_token = "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";
+const access_token = "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";
 
 export const Context = ({ children }) => {
   const [user, setUser] = useState([]);
